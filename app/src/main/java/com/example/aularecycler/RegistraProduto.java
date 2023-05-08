@@ -1,5 +1,7 @@
 package com.example.aularecycler;
 
+import static com.example.aularecycler.MainActivity.listaProdutos;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,11 +24,10 @@ public class RegistraProduto extends AppCompatActivity {
     public void criaProduto(View v){
         String nomeProduto = String.valueOf(nome.getText());
         String categoriaProduto = String.valueOf(categoria.getText());
-        Float precoProduto = Float.valueOf(String.valueOf(preco.getText()));
+        float precoProduto = Float.parseFloat(String.valueOf(preco.getText()));
         Produto pn = new Produto(nomeProduto, categoriaProduto, precoProduto);
-
+        listaProdutos.add(pn);
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("produto", pn);
         startActivity(i);
     }
 

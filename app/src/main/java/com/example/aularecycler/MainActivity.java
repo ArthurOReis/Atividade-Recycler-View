@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Produto> listaProdutos = new ArrayList<>();
+    static ArrayList<Produto> listaProdutos = new ArrayList<>();
     RecyclerView recycler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
         Intent intent = getIntent();
-        if(intent != null && intent.getExtras() != null){
-            Produto produto = (Produto) intent.getSerializableExtra("produto");
-            if(produto != null){
-                listaProdutos.add(produto);
-                // atualiza o RecyclerView com o novo produto
-                Adaptador adapter = (Adaptador) recycler.getAdapter();
-                adapter.notifyDataSetChanged();
-            }
-        }
         cadastroInicial();
         recycler = findViewById(R.id.rv);
         recycler.setHasFixedSize(true);
