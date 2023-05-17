@@ -26,9 +26,10 @@ public class RegistraProduto extends AppCompatActivity {
         String categoriaProduto = String.valueOf(categoria.getText());
         float precoProduto = Float.parseFloat(String.valueOf(preco.getText()));
         Produto pn = new Produto(nomeProduto, categoriaProduto, precoProduto);
+
         listaProdutos.add(pn);
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        pn.salvar();
+        super.onBackPressed();
     }
 
 

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     static ArrayList<Produto> listaProdutos = new ArrayList<>();
     RecyclerView recycler;
+    Adaptador adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         recycler = findViewById(R.id.rv);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        Adaptador adapter = new Adaptador(this, listaProdutos, new Adaptador.OnItemClickListener() {
+        adapter = new Adaptador(this, listaProdutos, new Adaptador.OnItemClickListener() {
             @Override
             public void onItemClick(Produto p) {
                 //Aqui é o que vai acontecer quando clicar em um item
@@ -58,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
     public void mudaTela (View v){
         Intent i = new Intent(this, RegistraProduto.class);
         startActivity(i);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
 }
