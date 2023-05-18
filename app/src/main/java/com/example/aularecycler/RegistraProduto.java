@@ -38,9 +38,6 @@ public class RegistraProduto extends AppCompatActivity {
         Produto pn = new Produto(nomeProduto, categoriaProduto, precoProduto);
 
         verificaSeExiste(pn);
-        if (existeOuNao == "Não existe"){
-            super.onBackPressed();
-        }
     }
 
     public void verificaSeExiste(Produto produto){
@@ -48,13 +45,13 @@ public class RegistraProduto extends AppCompatActivity {
         reference.child("Produtos").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if(snapshot.hasChild(produto.getNome())){
                     Toast.makeText(RegistraProduto.this, "Esse produto já existe", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     listaProdutos.add(produto);
                     produto.salvar();
-                    existeOuNao = "Não existe";
+                    RegistraProduto.super.onBackPressed();
                 }
             }
 
