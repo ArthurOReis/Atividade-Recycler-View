@@ -19,7 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegistraProduto extends AppCompatActivity {
     EditText nome, categoria, preco;
-    String existeOuNao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
